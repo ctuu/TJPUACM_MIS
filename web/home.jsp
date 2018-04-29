@@ -158,7 +158,7 @@
                                 String checkinListUserName = checkinDataArrayList.get(i).getUserName();
                                 String checkinListTime = checkinDataArrayList.get(i).getCheckinTime();
 
-                                checkinTop3 = String.format("No.%d %-s    -> %s ", i+1, checkinListUserName, checkinListTime);
+                                checkinTop3 = String.format("No.%d %s    -> %s ", i+1, checkinListUserName, checkinListTime);
                                 out.print("<p style=\"color: " + color[i] + "\">" + checkinTop3 + "</p>");
                             }
                         %>
