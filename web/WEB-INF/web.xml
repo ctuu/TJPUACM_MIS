@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--filter-->
+    <filter>
+        <filter-name>setCharacterEncodingFilter</filter-name>
+        <filter-class>cn.ningxy.filter.SetCharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>setCharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--servlet-->
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>cn.ningxy.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>rigister</servlet-name>
+        <servlet-class>cn.ningxy.servlet.RigisterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>rigister</servlet-name>
+        <url-pattern>/RigisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>checkin</servlet-name>
+        <servlet-class>cn.ningxy.servlet.CheckinServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkin</servlet-name>
+        <url-pattern>/CheckinServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--welcome-file-list-->
+    <welcome-file-list>
+        <!--<welcome-file>home.jsp</welcome-file>-->
+        <welcome-file>home.jsp</welcome-file>
+        <welcome-file>register.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>
