@@ -1,6 +1,9 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.TimeZone" %><%--
+<%@ page import="java.util.TimeZone" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="cn.ningxy.bean.CheckinData" %>
+<%@ page import="cn.ningxy.service.CheckinServer" %><%--
   Created by IntelliJ IDEA.
   User: ningxy
   Date: 2018/4/28
@@ -140,10 +143,29 @@
                     <!-- <h5 class="card-title">签到次数：</h5> -->
                     <!-- <h6 class="card-subtitle mb-2 text-muted">2018-04-25</h6> -->
                     <p class="card-text">
-                        今日首签：
-                        <a href="#">xiaowuga</a>
-                        于
-                        <time>08:17</time>
+                        今日Top3：<br>
+                        <%
+                            String[] color = new String[3];
+                            color[0] = "#FF230F";
+                            color[1] = "#ff3c97";
+                            color[2] = "D559FF";
+
+                            ArrayList<CheckinData> checkinDataArrayList = new CheckinServer().getCheckinList();
+
+                            for(int i = 0; i < checkinDataArrayList.size() && i < 3; i++) {
+
+                                String checkinTop3 = null;
+                                String checkinListUserName = checkinDataArrayList.get(i).getUserName();
+                                String checkinListTime = checkinDataArrayList.get(i).getCheckinTime();
+
+                                checkinTop3 = String.format("No.%d %-s    -> %s ", i+1, checkinListUserName, checkinListTime);
+                                out.print("<p style=\"color: " + color[i] + "\">" + checkinTop3 + "</p>");
+                            }
+                        %>
+                        <%--<span style="color: #d559ff;"></span>--%>
+                        <%--<a href="#" style="color: xxx">xiaowuga</a>--%>
+                        <%--于--%>
+                        <%--<time>08:17</time>--%>
                     </p>
                 </div>
             </div>

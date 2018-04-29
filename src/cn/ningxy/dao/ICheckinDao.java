@@ -1,6 +1,8 @@
 package cn.ningxy.dao;
 
-import java.util.List;
+import cn.ningxy.bean.CheckinData;
+
+import java.util.ArrayList;
 
 /**
  * @Author: ningxy
@@ -11,10 +13,10 @@ public interface ICheckinDao {
 
     /**
     * @Author: ningxy
-    * @Description:
+    * @Description: 获取今日打卡列表
     * @params: []
-    * @return: java.util.List<java.lang.String>
-    * @Date: 2018/4/29 下午12:18
+    * @return: java.util.ArrayList<cn.ningxy.bean.CheckinData>
+    * @Date: 2018/4/29 下午2:21
     */
-    public List<String> getCheckList() throws Exception;
+    public ArrayList<CheckinData> getCheckinList() throws Exception;
 }

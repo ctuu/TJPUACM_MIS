@@ -18,7 +18,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "userName='" + userName + '\'' + ", passWord='" + passWord + '\'' + '}';
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userRealName='" + userRealName + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
     }
 
     public User() {
