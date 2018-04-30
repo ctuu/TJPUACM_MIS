@@ -153,14 +153,16 @@
 
                             ArrayList<CheckinData> checkinDataArrayList = new CheckinServer().getCheckinList();
 
-                            for(int i = 0; i < checkinDataArrayList.size() && i < 3; i++) {
+                            if(checkinDataArrayList != null) {
+                                for(int i = 0; i < checkinDataArrayList.size() && i < 3; i++) {
 
-                                String checkinTop3 = null;
-                                String checkinListUserName = checkinDataArrayList.get(i).getUserName();
-                                String checkinListTime = checkinDataArrayList.get(i).getCheckinTime();
+                                    String checkinTop3 = null;
+                                    String checkinListUserName = checkinDataArrayList.get(i).getUserName();
+                                    String checkinListTime = checkinDataArrayList.get(i).getCheckinTime();
 
-                                checkinTop3 = String.format("No.%d %s    -> %s ", i+1, checkinListUserName, checkinListTime);
-                                out.print("<p style=\"color: " + color[i] + "\">" + checkinTop3 + "</p>");
+                                    checkinTop3 = String.format("No.%d %s    -> %s ", i+1, checkinListUserName, checkinListTime);
+                                    out.print("<p style=\"color: " + color[i] + "\">" + checkinTop3 + "</p>");
+                                }
                             }
                         %>
                         <%--<span style="color: #d559ff;"></span>--%>
@@ -234,7 +236,7 @@
                     toastr.error("抱歉，我们遇到了错误。请联系管理员。");
                 }
             }
-        };
+        };
 
         //创建异步Post请求
         var url = "CheckinServlet";
