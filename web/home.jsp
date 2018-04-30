@@ -181,7 +181,7 @@
 
 <%
     //    获取当前用户
-    String userNow = new UserServer().getUserNow();
+    String userNow = new UserServer().getUserNow(request);
     System.out.println("home | " + userNow);
     out.print("<script>userNow = '" + userNow + "';</script>");
 //    out.print("userNow = '"+ userNow +"';");
