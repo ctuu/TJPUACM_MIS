@@ -1,16 +1,16 @@
 package cn.ningxy.dao;
 
+import cn.ningxy.util.ImportantInfo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
 
-    //    private static final String URL = "jdbc:mysql://172.17.0.2:3333/mis";
-    private static final String URL = "jdbc:mysql://localhost:3355/mis?useUnicode=true&characterEncoding=utf8&useSSL=false";
-//    private static final String URL = "jdbc:mysql://localhost:3366/mis?useUnicode=true&characterEncoding=utf8&useSSL=false";
-    private static final String USER = "user";
-    private static final String PASSWORD = "acmtjpu666";
+    private static final String URL = ImportantInfo.DB_URL;
+    private static final String USER = ImportantInfo.DB_USER;
+    private static final String PASSWORD = ImportantInfo.DB_PASSWORD;
 
     private Connection conn = null;
 
