@@ -74,5 +74,4 @@ public interface IUserDaoService {
     */
     public boolean isAlreadyCheckedin(String userName) throws Exception;
 
-//    public User logout(User user)
 }
