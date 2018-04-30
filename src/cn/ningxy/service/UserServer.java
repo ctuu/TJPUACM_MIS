@@ -3,6 +3,9 @@ package cn.ningxy.service;
 import cn.ningxy.bean.User;
 import cn.ningxy.dao.UserDaoServer;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author: ningxy
  * @Description:
@@ -78,5 +81,28 @@ public class UserServer implements IUserService {
         }
 
         return result;
+    }
+
+    /**
+     * @Author: ningxy
+     * @Description: 获取当前登录用户
+     * @params: [request]
+     * @return: java.lang.String
+     * @Date: 2018/4/30 下午7:41
+     */
+    @Override
+    public String getUserNow(HttpServletRequest request) {
+        //    获取当前用户
+        String userNow = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("username")) {
+                    System.out.println("cookies = " + cookies[i].getValue());
+                    userNow = cookies[i].getValue();
+                }
+            }
+        }
+        return userNow;
     }
 }

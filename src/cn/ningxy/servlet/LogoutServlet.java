@@ -1,5 +1,7 @@
 package cn.ningxy.servlet;
 
+import cn.ningxy.service.UserServer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -20,18 +22,9 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //    获取当前用户
-        String userNow = null;
-        Cookie[] cookies = null;
-        cookies = request.getCookies();
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("username")) {
-                    System.out.println("cookies = " + cookies[i].getValue());
-                    userNow = cookies[i].getValue();
-                }
-            }
-        }
-        System.out.println("CheckoutServlet | " + userNow);
+        String userNow = new UserServer().getUserNow(request);
+
+        System.out.println("LogoutServlet | " + userNow);
 
         PrintWriter out = response.getWriter();
 

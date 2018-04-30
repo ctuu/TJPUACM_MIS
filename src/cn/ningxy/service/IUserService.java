@@ -38,4 +38,13 @@ public interface IUserService {
     */
     public boolean isAlreadyCheckedin(String userName) throws Exception;
 
+    /**
+    * @Author: ningxy
+    * @Description: 获取当前登录用户
+    * @params: [request]
+    * @return: java.lang.String
+    * @Date: 2018/4/30 下午7:41
+    */
+    public String getUserNow(HttpServletRequest request);
+
 }

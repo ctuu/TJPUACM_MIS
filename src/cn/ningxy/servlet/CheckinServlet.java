@@ -28,18 +28,7 @@ public class CheckinServlet extends HttpServlet {
         boolean isIPLegal = false;
 
         //    获取当前用户
-        String userNow = null;
-        Cookie cookie = null;
-        Cookie[] cookies = null;
-        cookies = request.getCookies();
-        if (cookies != null) {
-            for (int i = 0; i < cookies.length; i++) {
-                if (cookies[i].getName().equals("username")) {
-                    System.out.println("cookies = " + cookies[i].getValue());
-                    userNow = cookies[i].getValue();
-                }
-            }
-        }
+        String userNow = new UserServer().getUserNow(request);
         System.out.println("CheckinServlet | " + userNow);
 
         if(userNow != null) {
@@ -87,8 +76,6 @@ public class CheckinServlet extends HttpServlet {
 
             }
         }
-
-
 
     }
 
