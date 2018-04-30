@@ -32,6 +32,14 @@
         <url-pattern>/RigisterServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>cn.ningxy.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>checkin</servlet-name>
         <servlet-class>cn.ningxy.servlet.CheckinServlet</servlet-class>
     </servlet>

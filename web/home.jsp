@@ -54,10 +54,10 @@
                         Null
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <a class="dropdown-item" href="#">账户设置</a>
-                        <a class="dropdown-item" href="#">后台管理</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">登出</a>
+                        <%--<a class="dropdown-item" href="#">账户设置</a>--%>
+                        <%--<a class="dropdown-item" href="#">后台管理</a>--%>
+                        <%--<div class="dropdown-divider"></div>--%>
+                        <a class="dropdown-item" href="#" onclick="sendRequestByPost2()">登出</a>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,8 @@
 
     if (userNow != null) {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"" + userNow + "\";</script>");
-        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
+//        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
+//        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" onclick=\\\"sendRequestByPost2()\\\">登出</a>\";</script>");
     } else {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"未登录\";</script>");
         out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"login.jsp\\\">登录</a><a class=\\\"dropdown-item\\\" href=\\\"register.jsp\\\">注册</a>\"</script>\n");
@@ -257,6 +258,50 @@
         } else {
             toastr.warning("别着急嘛~ 先登录好嘛~");
         }
+    }
+
+    function sendRequestByPost2() {
+
+        toastr.options.timeOut = '2000'; //展现时间
+        toastr.options.extendedTimeOut = '1000';
+        toastr.options.positionClass = 'toast-top-full-width'; //弹出窗的位置
+        toastr.options.showMethod = 'slideDown';
+        toastr.options.progressBar = false;
+
+        //定义异步请求对象
+        var xmlReq;
+        //检测浏览器是否直接支持ajax
+        if (window.XMLHttpRequest) {//直接支持ajax
+            xmlReq = new XMLHttpRequest();
+        } else {//不直接支持ajax
+            xmlReq = new ActiveObject('Microsoft.XMLHTTP');
+        }
+
+        //设置回调函数
+        xmlReq.onreadystatechange = function () {
+            if (xmlReq.readyState == 4 && xmlReq.status == 200) {
+                //获取服务器的响应值
+                var result = xmlReq.responseText.toString();
+                //后续操作
+
+                if (result == "logoutSucceed") {
+                    var url = "home.jsp";
+                    var timeDelay = 1010;
+                    toastr.info("退出成功");
+                    setTimeout("top.location.href = '" + url + "'",timeDelay);
+                } else {
+                    toastr.error("抱歉，我们遇到了错误。请联系管理员。");
+                }
+            }
+        };
+
+        //创建异步Post请求
+        var url = "LogoutServlet";
+        // var url="LoginServlet";
+        xmlReq.open("POST", url, true);
+        xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        //发送请求
+        xmlReq.send(null);
     }
 </script>
 
