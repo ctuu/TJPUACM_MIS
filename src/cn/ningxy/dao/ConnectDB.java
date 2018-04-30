@@ -6,10 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectDB {
 
-    //    private static final String URL = "jdbc:mysql://172.17.0.2:3366/mis";
-//    private static final String URL = "jdbc:mysql://localhost:3366/mis?useSSL=false&&useUnicode=true&amp;characterEncoding=utf-8\n";
-//    private static final String URL = "jdbc:mysql://localhost:3355/mis?useUnicode=true&characterEncoding=utf8";
+    //    private static final String URL = "jdbc:mysql://172.17.0.2:3333/mis";
     private static final String URL = "jdbc:mysql://localhost:3355/mis?useUnicode=true&characterEncoding=utf8&useSSL=false";
+//    private static final String URL = "jdbc:mysql://localhost:3366/mis?useUnicode=true&characterEncoding=utf8&useSSL=false";
     private static final String USER = "user";
     private static final String PASSWORD = "acmtjpu666";
 

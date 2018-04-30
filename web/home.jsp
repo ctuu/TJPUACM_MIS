@@ -44,7 +44,7 @@
                     <a class=" nav-item active nav-link" href="#">Home
                         <span class="sr-only">(current)</span>
                     </a>
-                    <a class="nav-item nav-link" href="#">Rank</a>
+                    <a class="nav-item nav-link" href="rank.jsp">Rank</a>
                     <a class="nav-item nav-link" href="#">About
                     </a>
                 </div>
@@ -173,7 +173,7 @@
     </div>
 </main>
 <footer class="footer mt-4 text-center">
-    <p>copyright TJPUACM</p>
+    <p>copyright&copy2018 TJPUACM</p>
 </footer>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

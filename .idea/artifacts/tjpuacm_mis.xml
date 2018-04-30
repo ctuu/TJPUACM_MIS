@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tjpuacm_mis">
+    <output-path>$PROJECT_DIR$/out/artifacts/tjpuacm_mis</output-path>
+    <root id="archive" name="tjpuacm_mis.war">
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/web/WEB-INF/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

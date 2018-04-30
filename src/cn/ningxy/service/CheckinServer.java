@@ -21,7 +21,18 @@ public class CheckinServer implements ICheckinService{
      */
     @Override
     public ArrayList<CheckinData> getCheckinList() throws Exception {
-        ArrayList<CheckinData> checkinList =  new CheckinDao().getCheckinList();
-        return checkinList;
+        return new CheckinDao().getCheckinList();
+    }
+
+    /**
+     * @Author: ningxy
+     * @Description: 获取总打卡排名
+     * @params: []
+     * @return: java.util.ArrayList<cn.ningxy.bean.CheckinData>
+     * @Date: 2018/4/30 下午12:41
+     */
+    @Override
+    public ArrayList<CheckinData> getCheckinRank() throws Exception {
+        return new CheckinDao().getCheckinRank();
     }
 }

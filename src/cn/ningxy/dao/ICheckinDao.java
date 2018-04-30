@@ -19,4 +19,13 @@ public interface ICheckinDao {
     * @Date: 2018/4/29 下午2:21
     */
     public ArrayList<CheckinData> getCheckinList() throws Exception;
+
+    /**
+    * @Author: ningxy
+    * @Description: 获取总打卡排名
+    * @params: []
+    * @return: java.util.ArrayList<cn.ningxy.bean.CheckinData>
+    * @Date: 2018/4/30 下午12:28
+    */
+    public ArrayList<CheckinData> getCheckinRank() throws Exception;
 }

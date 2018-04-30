@@ -52,4 +52,47 @@ public class CheckinDao implements ICheckinDao {
 
         return checkinList;
     }
+
+    /**
+     * @Author: ningxy
+     * @Description: 获取总打卡排名
+     * @params: []
+     * @return: java.util.ArrayList<cn.ningxy.bean.CheckinData>
+     * @Date: 2018/4/30 下午12:28
+     */
+    @Override
+    public ArrayList<CheckinData> getCheckinRank() throws Exception {
+
+        String sql = "SELECT A.username, B.cnt \n" +
+                "FROM users AS A \n" +
+                "INNER JOIN (\n" +
+                "  SELECT user_id, COUNT(*) cnt \n" +
+                "  FROM checkin \n" +
+                "  GROUP BY user_id \n" +
+                ") AS B \n" +
+                "ON A.user_id = B.user_id \n" +
+                "ORDER BY B.cnt DESC;";
+
+        Connection connection = new ConnectDB().getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        ResultSet resultSet = null;
+
+        try {
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<CheckinData> result = new ArrayList<>();
+
+        while (resultSet.next()) {
+            String userName = resultSet.getString(1);
+            int frequency = Integer.valueOf(resultSet.getString(2));
+            result.add(new CheckinData(userName, frequency));
+        }
+
+        return result;
+    }
 }
