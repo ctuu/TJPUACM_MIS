@@ -228,6 +228,8 @@
                     toastr.success("今日打卡成功！！！");
                 } else if (result == "notLogin") {
                     toastr.warning("登录信息过期，请刷新页面重新登录哟~");
+                } else if (result == "IPIllegal") {
+                    toastr.warning("请连接实验室网络进行打卡哦~");
                 } else {
                     toastr.error("抱歉，我们遇到了错误。请联系管理员。");
                 }
