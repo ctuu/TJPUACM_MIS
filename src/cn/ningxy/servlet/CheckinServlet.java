@@ -6,10 +6,7 @@ import cn.ningxy.service.UserServer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -25,11 +22,29 @@ public class CheckinServlet extends HttpServlet {
 
         String userName = request.getParameter("username");
 
+        boolean isLogin = false;
         boolean isCheckinSuccess = false;
         boolean isAlreadyCheckedin = false;
         boolean isIPLegal = false;
 
+        //    获取当前用户
+        String userNow = null;
+        Cookie cookie = null;
+        Cookie[] cookies = null;
+        cookies = request.getCookies();
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                if (cookies[i].getName().equals("username")) {
+                    System.out.println("cookies = " + cookies[i].getValue());
+                    userNow = cookies[i].getValue();
+                }
+            }
+        }
+        System.out.println("CheckinServlet | " + userNow);
 
+        if(userNow != null) {
+            isLogin = true;
+        }
 
         PrintWriter out = response.getWriter();
 
@@ -39,35 +54,41 @@ public class CheckinServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (isAlreadyCheckedin == true) {
-            out.print("checkedin");
+        if (isLogin == false) {
+            out.print("notLogin");
         } else {
-
-            isIPLegal = new CheckinServer().CheckIPAddr(request);
-
-            if (isIPLegal == false) {
-                out.print("IPIllegal");
+            if (isAlreadyCheckedin == true) {
+                out.print("checkedin");
             } else {
-                try {
-                    isCheckinSuccess = new UserServer().checkin(userName);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
-                if (isCheckinSuccess == true) {
-                    out.print("success");
+                isIPLegal = new CheckinServer().CheckIPAddr(request);
+
+                if (isIPLegal == false) {
+                    out.print("IPIllegal");
                 } else {
-                    out.print("error");
+                    try {
+                        isCheckinSuccess = new UserServer().checkin(userName);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    if (isCheckinSuccess == true) {
+                        out.print("success");
+                    } else {
+                        out.print("error");
+                    }
+
+                    try {
+                        out.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
-                try {
-                    out.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
-
         }
+
+
 
     }
 

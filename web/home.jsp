@@ -234,9 +234,11 @@
                 //后续操作
 
                 if (result == "checkedin") {
-                    toastr.info("今天已经打过卡了哦");
+                    toastr.info("今天已经打过卡了哦~");
                 } else if (result == "success") {
                     toastr.success("今日打卡成功！！！");
+                } else if (result == "notLogin") {
+                    toastr.warning("登录信息过期，请刷新页面重新登录哟~");
                 } else {
                     toastr.error("抱歉，我们遇到了错误。请联系管理员。");
                 }
