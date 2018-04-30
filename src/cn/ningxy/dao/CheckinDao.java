@@ -49,6 +49,16 @@ public class CheckinDao implements ICheckinDao {
             String checkinTime = resultSet.getString(3);
             checkinList.add(new CheckinData(userName, checkinDate, checkinTime));
         }
+        try {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return checkinList;
     }
@@ -92,6 +102,17 @@ public class CheckinDao implements ICheckinDao {
             int frequency = Integer.valueOf(resultSet.getString(2));
 //            System.out.println("CheckinDao | " + userName + ", " + frequency);
             result.add(new CheckinData(userName, frequency));
+        }
+
+        try {
+            resultSet.close();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return result;

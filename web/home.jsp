@@ -107,7 +107,7 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <a href="#" class="mr-auto">你猜这是不是一条通知</a>
+                                        <a href="#" class="mr-auto">TJPU首个ACM个人系统上线啦</a>
                                         <time>2018-04-26</time>
                                     </div>
                                 </li>
@@ -173,9 +173,7 @@
         </div>
     </div>
 </main>
-<footer class="footer mt-4 text-center">
-    <p>copyright&copy2018 TJPUACM</p>
-</footer>
+<%@include file="footer.jsp"%>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 

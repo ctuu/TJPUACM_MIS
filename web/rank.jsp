@@ -104,9 +104,7 @@
         </div>
     </div>
 </main>
-<footer class="footer mt-4 text-center">
-    <p>copyright&copy2018 TJPUACM</p>
-</footer>
+<%@include file="footer.jsp"%>
 
 <%
     //    获取当前用户

@@ -52,11 +52,14 @@
         </div>
     </nav>
 </header>
+
 <main class="container mt-4">
     <h1>关于</h1>
     <p>@ningxxxl</p>
     <p>@ctuu</p>
 </main>
+
+<%@include file="footer.jsp"%>
 
 <%
     //    获取当前用户
