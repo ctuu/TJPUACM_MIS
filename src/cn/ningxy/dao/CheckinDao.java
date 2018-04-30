@@ -90,6 +90,7 @@ public class CheckinDao implements ICheckinDao {
         while (resultSet.next()) {
             String userName = resultSet.getString(1);
             int frequency = Integer.valueOf(resultSet.getString(2));
+//            System.out.println("CheckinDao | " + userName + ", " + frequency);
             result.add(new CheckinData(userName, frequency));
         }
 

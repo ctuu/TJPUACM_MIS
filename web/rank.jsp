@@ -97,7 +97,7 @@
                                         "    <td>\n" +
                                         "        <a href=\"#\">"+ userName +"</a>\n" +
                                         "    </td>\n" +
-                                        "    <td>8</td>\n" +
+                                        "    <td>" + frequency + "</td>\n" +
                                         "</tr>");
                             }
                         %>
