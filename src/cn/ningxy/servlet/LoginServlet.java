@@ -28,8 +28,6 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (user != null) {
-            session.setAttribute("userName", userName);
-            session.setAttribute("loginRes", "succeed");
             request.setAttribute("loginRes", "succeed");
 
             Cookie cookie = new Cookie("username", userName);
@@ -41,7 +39,6 @@ public class LoginServlet extends HttpServlet {
             }
             response.addCookie(cookie);
         } else {
-            session.setAttribute("loginRes", "failed");
             request.setAttribute("loginRes", "failed");
         }
         request.getRequestDispatcher("login.jsp").forward(request, response);
