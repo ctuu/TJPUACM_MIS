@@ -3,7 +3,8 @@
 <%@ page import="java.util.TimeZone" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="cn.ningxy.bean.CheckinData" %>
-<%@ page import="cn.ningxy.service.CheckinServer" %><%--
+<%@ page import="cn.ningxy.service.CheckinServer" %>
+<%@ page import="cn.ningxy.service.UserServer" %><%--
   Created by IntelliJ IDEA.
   User: ningxy
   Date: 2018/4/28
@@ -180,18 +181,7 @@
 
 <%
     //    获取当前用户
-    String userNow = null;
-    Cookie cookie = null;
-    Cookie[] cookies = null;
-    cookies = request.getCookies();
-    if (cookies != null) {
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("username")) {
-                System.out.println("cookies = " + cookies[i].getValue());
-                userNow = cookies[i].getValue();
-            }
-        }
-    }
+    String userNow = new UserServer().getUserNow();
     System.out.println("home | " + userNow);
     out.print("<script>userNow = '" + userNow + "';</script>");
 //    out.print("userNow = '"+ userNow +"';");
