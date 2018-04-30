@@ -13,8 +13,6 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-
         String userName = request.getParameter("username");
         String userPassword = request.getParameter("passwd");
         String isRemember = request.getParameter("isRemember");

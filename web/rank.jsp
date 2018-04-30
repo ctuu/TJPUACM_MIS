@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="cn.ningxy.bean.CheckinData" %>
-<%@ page import="cn.ningxy.service.CheckinServer" %><%--
+<%@ page import="cn.ningxy.service.CheckinServer" %>
+<%@ page import="cn.ningxy.service.UserServer" %><%--
   Created by IntelliJ IDEA.
   User: ningxy
   Date: 2018/4/29
@@ -19,11 +20,6 @@
     <script src="https://cdn.bootcss.com/toastr.js/latest/toastr.min.js"></script>
 
     <title>TJPUACM Board</title>
-
-    <script>
-        // 设置当前登录用户的用户名全局变量
-        var userNow = null;
-    </script>
 
     <style>
         td {
@@ -85,12 +81,12 @@
                         <%
                             ArrayList<CheckinData> checkinDataArrayList = new CheckinServer().getCheckinRank();
 
-                            int rank = 0;
+                            int rank = 0;   //用户排名
 
                             for(CheckinData checkinData: checkinDataArrayList) {
                                 rank += 1;
-                                String userName = checkinData.getUserName();
-                                int frequency = checkinData.getCheckinFrequency();
+                                String userName = checkinData.getUserName();        //用户名
+                                int frequency = checkinData.getCheckinFrequency();  //打卡次数
                                 out.print("" +
                                         "<tr>\n" +
                                         "    <th scope=\"row\">"+ rank +"</th>\n" +
@@ -114,18 +110,7 @@
 
 <%
     //    获取当前用户
-    String userNow = null;
-    Cookie cookie = null;
-    Cookie[] cookies = null;
-    cookies = request.getCookies();
-    if (cookies != null) {
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("username")) {
-                System.out.println("cookies = " + cookies[i].getValue());
-                userNow = cookies[i].getValue();
-            }
-        }
-    }
+    String userNow = new UserServer().getUserNow(request);
     System.out.println("home | " + userNow);
     out.print("<script>userNow = '" + userNow + "';</script>");
 //    out.print("userNow = '"+ userNow +"';");
