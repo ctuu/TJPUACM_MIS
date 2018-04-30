@@ -41,21 +41,21 @@ public class UserServer implements IUserService {
     @Override
     public boolean checkin(String userName) throws Exception {
 
-        boolean isCheckinSucces = false;
+        boolean isCheckinSuccess = false;
 
         try {
-            isCheckinSucces = new UserDaoServer().checkin(userName);
+            isCheckinSuccess = new UserDaoServer().checkin(userName);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        if (isCheckinSucces == true) {
+        if (isCheckinSuccess == true) {
             System.out.println("UserServer | 用户[" + userName + "]打卡成功");
         } else {
             System.out.println("UserDaoServer | 用户[" + userName + "]打卡失败");
         }
 
-        return isCheckinSucces;
+        return isCheckinSuccess;
     }
 
     /**

@@ -2,6 +2,7 @@ package cn.ningxy.service;
 
 import cn.ningxy.bean.CheckinData;
 
+import javax.servlet.ServletRequest;
 import java.util.ArrayList;
 
 /**
@@ -28,4 +29,13 @@ public interface ICheckinService {
     * @Date: 2018/4/30 下午12:41
     */
     public ArrayList<CheckinData> getCheckinRank() throws Exception;
+
+    /**
+    * @Author: ningxy
+    * @Description: 检查签到IP是否合法
+    * @params: [servletRequest]
+    * @return: boolean
+    * @Date: 2018/4/30 下午3:46
+    */
+    public boolean CheckIPAddr(ServletRequest servletRequest);
 }

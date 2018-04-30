@@ -1,6 +1,7 @@
 package cn.ningxy.servlet;
 
 import cn.ningxy.dao.UserDaoServer;
+import cn.ningxy.service.CheckinServer;
 import cn.ningxy.service.UserServer;
 
 import javax.servlet.ServletException;
@@ -26,6 +27,9 @@ public class CheckinServlet extends HttpServlet {
 
         boolean isCheckinSuccess = false;
         boolean isAlreadyCheckedin = false;
+        boolean isIPLegal = false;
+
+
 
         PrintWriter out = response.getWriter();
 
@@ -38,23 +42,31 @@ public class CheckinServlet extends HttpServlet {
         if (isAlreadyCheckedin == true) {
             out.print("checkedin");
         } else {
-            try {
-                isCheckinSuccess = new UserServer().checkin(userName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
-            if (isCheckinSuccess == true) {
-                out.print("success");
+            isIPLegal = new CheckinServer().CheckIPAddr(request);
+
+            if (isIPLegal == false) {
+                out.print("IPIllegal");
             } else {
-                out.print("error");
+                try {
+                    isCheckinSuccess = new UserServer().checkin(userName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                if (isCheckinSuccess == true) {
+                    out.print("success");
+                } else {
+                    out.print("error");
+                }
+
+                try {
+                    out.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
-            try {
-                out.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
     }
