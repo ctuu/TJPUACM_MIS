@@ -33,9 +33,9 @@ public class LoginServlet extends HttpServlet {
             Cookie cookie = new Cookie("username", userName);
             System.out.println("isRemember = " + isRemember);
             if (isRemember != null && isRemember.equals("on")) {
-                cookie.setMaxAge(60);
+                cookie.setMaxAge(3 * 60 * 60);
             } else {
-                cookie.setMaxAge(10);
+                cookie.setMaxAge(10 * 60);
             }
             response.addCookie(cookie);
         } else {
