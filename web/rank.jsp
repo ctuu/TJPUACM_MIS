@@ -43,7 +43,7 @@
                         <span class="sr-only">(current)</span>
                     </a>
                     <a class="nav-item active nav-link" href="#">Rank</a>
-                    <a class="nav-item nav-link" href="#">About
+                    <a class="nav-item nav-link" href="about.jsp">About
                     </a>
                 </div>
                 <div class="btn-group">

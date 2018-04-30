@@ -73,7 +73,7 @@
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="isRemember"/>1分钟之内记住我（不然只有10s）</label>
+                            <label><input type="checkbox" name="isRemember"/>保持登录状态（3h）</label>
                             <a href="register.jsp">还没有账号？立即注册!</a>
                         </div>
                     </div>
