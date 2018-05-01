@@ -21,7 +21,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">TJPU ACM Borad</a>
+            <a class="navbar-brand" href="home.jsp">TJPU ACM Borad</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav mr-auto">
-                    <a class=" nav-item nav-link" href="#">Home
+                    <a class=" nav-item nav-link" href="home.jsp">Home
                         <span class="sr-only">(current)</span>
                     </a>
                     <a class="nav-item nav-link" href="rank.jsp">Rank</a>
