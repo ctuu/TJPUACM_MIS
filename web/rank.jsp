@@ -46,10 +46,10 @@
                         Null
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <a class="dropdown-item" href="#">账户设置</a>
-                        <a class="dropdown-item" href="#">后台管理</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">登出</a>
+                        <%--<a class="dropdown-item" href="#">账户设置</a>--%>
+                        <%--<a class="dropdown-item" href="#">后台管理</a>--%>
+                        <%--<div class="dropdown-divider"></div>--%>
+                        <a class="dropdown-item" href="#" onclick="sendRequestByPost2()">登出</a>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
 
     if (userNow != null) {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"" + userNow + "\";</script>");
-        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
+//        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
     } else {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"未登录\";</script>");
         out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"login.jsp\\\">登录</a><a class=\\\"dropdown-item\\\" href=\\\"register.jsp\\\">注册</a>\"</script>\n");
