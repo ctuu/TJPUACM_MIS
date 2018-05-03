@@ -322,4 +322,71 @@ public class UserDaoServer implements IUserDaoService {
 
         return result;
     }
+
+    /**
+     * @param userName
+     * @Author: ningxy
+     * @Description:
+     * @params: [userName]
+     * @return: java.util.ArrayList<cn.ningxy.bean.User>
+     * @Date: 2018/5/3 下午9:18
+     */
+    @Override
+    public ArrayList<User> getUserInfo(String userName) throws Exception {
+
+        String sql = "SELECT\n" +
+                "\tusername,\n" +
+                "\tuser_name,\n" +
+                "\tuser_email,\n" +
+                "\tuser_no,\n" +
+                "\tuser_school,\n" +
+                "\tuser_dept,\n" +
+                "\tuser_major,\n" +
+                "\tuser_class \n" +
+                "FROM\n" +
+                "\tusers\n" +
+                "\tINNER JOIN user_info \n" +
+                "\tON users.user_id = user_info.user_id \n" +
+                "WHERE\n" +
+                "\tusername = ?";
+
+        Connection connection = new ConnectDB().getConnection();
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, userName);
+
+        ArrayList<User> userInfo = new ArrayList<>();
+
+        try {
+            preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.getResultSet();
+
+            while(resultSet.next()) {
+                String userName1 = resultSet.getString(1);
+                String userRealName = resultSet.getString(2);
+                String userEmail = resultSet.getString(3);
+                String userNo = resultSet.getString(4);
+                String userSchool = resultSet.getString(5);
+                String userDept = resultSet.getString(6);
+                String userMajor = resultSet.getString(7);
+                String userClass = resultSet.getString(8);
+
+                User user = new User(userName1, userRealName, userEmail, userNo, userSchool, userDept, userMajor, userClass);
+
+                userInfo.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return userInfo;
+    }
 }

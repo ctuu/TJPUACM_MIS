@@ -129,6 +129,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">TJPU ACM Borad</a>
+            <a href="profile.jsp"><button>set profile</button> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -151,7 +152,8 @@
                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
                         <%--<a class="dropdown-item" href="#">账户设置</a>--%>
                         <%--<a class="dropdown-item" href="#">后台管理</a>--%>
-                        <%--<div class="dropdown-divider"></div>--%>
+                        <a class="dropdown-item" href="profile.jsp">设置</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" onclick="sendRequestByPost2()">登出</a>
                     </div>
                 </div>

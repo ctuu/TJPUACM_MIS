@@ -45,6 +45,17 @@ public class User {
         this.userClass = userClass;
     }
 
+    public User(String userName, String userRealName, String userEmail, String userNo, String userSchool, String userDept, String userMajor, String userClass) {
+        this.userName = userName;
+        this.userRealName = userRealName;
+        this.userEmail = userEmail;
+        this.userNo = userNo;
+        this.userSchool = userSchool;
+        this.userDept = userDept;
+        this.userMajor = userMajor;
+        this.userClass = userClass;
+    }
+
     public String getUserName() {
         return userName;
     }
