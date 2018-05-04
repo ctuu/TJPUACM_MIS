@@ -19,13 +19,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/latest/toastr.min.js"></script>
 
-    <title>TJPUACM Board</title>
-
-    <style>
-        td {
-            text-align: center;
-        }
-    </style>
+    <title>TJPUACM Board | Rank</title>
 </head>
 <body>
 <header>
@@ -52,10 +46,10 @@
                         Null
                     </button>
                     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu">
-                        <a class="dropdown-item" href="#">账户设置</a>
-                        <a class="dropdown-item" href="#">后台管理</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">登出</a>
+                        <%--<a class="dropdown-item" href="#">账户设置</a>--%>
+                        <%--<a class="dropdown-item" href="#">后台管理</a>--%>
+                        <%--<div class="dropdown-divider"></div>--%>
+                        <a class="dropdown-item" href="#" onclick="sendRequestByPost2()">登出</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +63,7 @@
                 <div class="card-body">
                     <h5 class="card-title">排名</h5>
                     <h6 class="card-subtitle mb-2 text-muted">大佬别签啦我都跟不上啦</h6>
-                    <table class="table">
+                    <table class="table text-center">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -81,12 +75,22 @@
                         <%
                             ArrayList<CheckinData> checkinDataArrayList = new CheckinServer().getCheckinRank();
 
+                            int rowId = 0;  //列表行号
                             int rank = 0;   //用户排名
 
+                            int preFrequency = 0;
+
                             for(CheckinData checkinData: checkinDataArrayList) {
-                                rank += 1;
+                                rowId += 1;
+
                                 String userName = checkinData.getUserName();        //用户名
                                 int frequency = checkinData.getCheckinFrequency();  //打卡次数
+
+                                if (rank == 0 || preFrequency != frequency) {
+                                    rank = rowId;
+                                }
+                                preFrequency = frequency;
+
                                 out.print("" +
                                         "<tr>\n" +
                                         "    <th scope=\"row\">"+ rank +"</th>\n" +
@@ -115,7 +119,7 @@
 
     if (userNow != null) {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"" + userNow + "\";</script>");
-        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
+//        out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"#\\\">设置</a>\";</script>");
     } else {
         out.println("<script>document.getElementById(\"navbardrop\").innerHTML=\"未登录\";</script>");
         out.println("<script>document.getElementById(\"dropdown-menu\").innerHTML = \"<a class=\\\"dropdown-item\\\" href=\\\"login.jsp\\\">登录</a><a class=\\\"dropdown-item\\\" href=\\\"register.jsp\\\">注册</a>\"</script>\n");

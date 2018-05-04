@@ -5,6 +5,7 @@ import cn.ningxy.dao.UserDaoServer;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * @Author: ningxy
@@ -104,5 +105,18 @@ public class UserServer implements IUserService {
             }
         }
         return userNow;
+    }
+
+    /**
+     * @param userName
+     * @Author: ningxy
+     * @Description: 获取用户详细信息
+     * @params: [userName]
+     * @return: java.util.ArrayList<cn.ningxy.bean.User>
+     * @Date: 2018/5/3 下午9:51
+     */
+    @Override
+    public ArrayList<User> getUserInfo(String userName) throws Exception {
+        return new UserDaoServer().getUserInfo(userName);
     }
 }

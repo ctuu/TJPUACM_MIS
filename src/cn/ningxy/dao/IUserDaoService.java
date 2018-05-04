@@ -2,6 +2,7 @@ package cn.ningxy.dao;
 
 import cn.ningxy.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,4 +75,12 @@ public interface IUserDaoService {
     */
     public boolean isAlreadyCheckedin(String userName) throws Exception;
 
+    /**
+    * @Author: ningxy
+    * @Description:
+    * @params: [userName]
+    * @return: java.util.ArrayList<cn.ningxy.bean.User>
+    * @Date: 2018/5/3 下午9:18
+    */
+    public ArrayList<User> getUserInfo(String userName) throws Exception;
 }
