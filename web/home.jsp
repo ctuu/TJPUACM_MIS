@@ -25,8 +25,102 @@
     <title>TJPUACM Board</title>
 
     <script>
-        // 设置当前登录用户的用户名全局变量
-        var userNow = null;
+
+        function sendRequestByPost() {
+
+            toastr.options.timeOut = '5000'; //展现时间
+            toastr.options.extendedTimeOut = '10000';
+            toastr.options.positionClass = 'toast-top-full-width'; //弹出窗的位置
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.progressBar = true;
+
+            //定义异步请求对象
+            var xmlReq;
+            //检测浏览器是否直接支持ajax
+            if (window.XMLHttpRequest) {//直接支持ajax
+                xmlReq = new XMLHttpRequest();
+            } else {//不直接支持ajax
+                xmlReq = new ActiveObject('Microsoft.XMLHTTP');
+            }
+
+            //设置回调函数
+            xmlReq.onreadystatechange = function () {
+                if (xmlReq.readyState == 4 && xmlReq.status == 200) {
+                    //获取服务器的响应值
+                    var result = xmlReq.responseText.toString();
+                    //后续操作
+
+                    if (result == "checkedin") {
+                        toastr.info("今天已经打过卡了哦~");
+                    } else if (result == "success") {
+                        toastr.success("今日打卡成功！！！");
+                    } else if (result == "notLogin") {
+                        toastr.warning("登录信息过期，请刷新页面重新登录哟~");
+                    } else if (result == "IPIllegal") {
+                        toastr.warning("请连接实验室网络进行打卡哦~");
+                    } else {
+                        toastr.error("抱歉，我们遇到了错误。请联系管理员。");
+                    }
+                }
+            }
+
+            //创建异步Post请求
+            var url = "CheckinServlet";
+            // var url="LoginServlet";
+            xmlReq.open("POST", url, true);
+            xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //发送请求
+            if (userNow != "null") {
+                var data = "username=" + userNow;
+                xmlReq.send(data);
+            } else {
+                toastr.warning("别着急嘛~ 先登录好嘛~");
+            }
+        }
+
+        function sendRequestByPost2() {
+
+            toastr.options.timeOut = '2000'; //展现时间
+            toastr.options.extendedTimeOut = '1000';
+            toastr.options.positionClass = 'toast-top-full-width'; //弹出窗的位置
+            toastr.options.showMethod = 'slideDown';
+            toastr.options.progressBar = false;
+
+            //定义异步请求对象
+            var xmlReq;
+            //检测浏览器是否直接支持ajax
+            if (window.XMLHttpRequest) {//直接支持ajax
+                xmlReq = new XMLHttpRequest();
+            } else {//不直接支持ajax
+                xmlReq = new ActiveObject('Microsoft.XMLHTTP');
+            }
+
+            //设置回调函数
+            xmlReq.onreadystatechange = function () {
+                if (xmlReq.readyState == 4 && xmlReq.status == 200) {
+                    //获取服务器的响应值
+                    var result = xmlReq.responseText.toString();
+                    //后续操作
+
+                    if (result == "logoutSucceed") {
+                        var url = "home.jsp";
+                        var timeDelay = 1010;
+                        toastr.info("退出成功");
+                        setTimeout("top.location.href = '" + url + "'",timeDelay);
+                    } else {
+                        toastr.error("抱歉，我们遇到了错误。请联系管理员。");
+                    }
+                }
+            };
+
+            //创建异步Post请求
+            var url = "LogoutServlet";
+            // var url="LoginServlet";
+            xmlReq.open("POST", url, true);
+            xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //发送请求
+            xmlReq.send(null);
+        }
     </script>
 
 </head>
@@ -92,7 +186,7 @@
                             <p class="card-text">
                                 大佬别签啦我都跟不上啦
                             </p>
-                            <a onclick="sendRequestByPost()" class="btn btn-primary">点击签到</a>
+                            <a onclick="sendRequestByPost()" class="btn btn-primary text-light">点击签到</a>
                         </div>
                     </div>
                 </div>
@@ -198,103 +292,6 @@
 
 </body>
 
-<script>
 
-    function sendRequestByPost() {
-
-        toastr.options.timeOut = '5000'; //展现时间
-        toastr.options.extendedTimeOut = '10000';
-        toastr.options.positionClass = 'toast-top-full-width'; //弹出窗的位置
-        toastr.options.showMethod = 'slideDown';
-        toastr.options.progressBar = true;
-
-        //定义异步请求对象
-        var xmlReq;
-        //检测浏览器是否直接支持ajax
-        if (window.XMLHttpRequest) {//直接支持ajax
-            xmlReq = new XMLHttpRequest();
-        } else {//不直接支持ajax
-            xmlReq = new ActiveObject('Microsoft.XMLHTTP');
-        }
-
-        //设置回调函数
-        xmlReq.onreadystatechange = function () {
-            if (xmlReq.readyState == 4 && xmlReq.status == 200) {
-                //获取服务器的响应值
-                var result = xmlReq.responseText.toString();
-                //后续操作
-
-                if (result == "checkedin") {
-                    toastr.info("今天已经打过卡了哦~");
-                } else if (result == "success") {
-                    toastr.success("今日打卡成功！！！");
-                } else if (result == "notLogin") {
-                    toastr.warning("登录信息过期，请刷新页面重新登录哟~");
-                } else if (result == "IPIllegal") {
-                    toastr.warning("请连接实验室网络进行打卡哦~");
-                } else {
-                    toastr.error("抱歉，我们遇到了错误。请联系管理员。");
-                }
-            }
-        };
-
-        //创建异步Post请求
-        var url = "CheckinServlet";
-        // var url="LoginServlet";
-        xmlReq.open("POST", url, true);
-        xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        //发送请求
-        if (userNow != "null") {
-            var data = "username=" + userNow;
-            xmlReq.send(data);
-        } else {
-            toastr.warning("别着急嘛~ 先登录好嘛~");
-        }
-    }
-
-    function sendRequestByPost2() {
-
-        toastr.options.timeOut = '2000'; //展现时间
-        toastr.options.extendedTimeOut = '1000';
-        toastr.options.positionClass = 'toast-top-full-width'; //弹出窗的位置
-        toastr.options.showMethod = 'slideDown';
-        toastr.options.progressBar = false;
-
-        //定义异步请求对象
-        var xmlReq;
-        //检测浏览器是否直接支持ajax
-        if (window.XMLHttpRequest) {//直接支持ajax
-            xmlReq = new XMLHttpRequest();
-        } else {//不直接支持ajax
-            xmlReq = new ActiveObject('Microsoft.XMLHTTP');
-        }
-
-        //设置回调函数
-        xmlReq.onreadystatechange = function () {
-            if (xmlReq.readyState == 4 && xmlReq.status == 200) {
-                //获取服务器的响应值
-                var result = xmlReq.responseText.toString();
-                //后续操作
-
-                if (result == "logoutSucceed") {
-                    var url = "home.jsp";
-                    var timeDelay = 1010;
-                    toastr.info("退出成功");
-                    setTimeout("top.location.href = '" + url + "'",timeDelay);
-                } else {
-                    toastr.error("抱歉，我们遇到了错误。请联系管理员。");
-                }
-            }
-        };
-
-        //创建异步Post请求
-        var url = "LogoutServlet";
-        // var url="LoginServlet";
-        xmlReq.open("POST", url, true);
-        xmlReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        //发送请求
-        xmlReq.send(null);
-    }
-</script>
 
 </html>
